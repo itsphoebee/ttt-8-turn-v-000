@@ -32,7 +32,7 @@ def turn(board)
   index = input_to_index(input)         # calls method to change input to index
   if valid_move?(board, index)          # if condition true then call the two methods
     move(board, index, current_player="X")
+    display_board(board)
   else turn(board)                      #if condition is false then recursion
-    display_board
   end
 end
