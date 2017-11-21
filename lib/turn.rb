@@ -7,14 +7,10 @@ def display_board(board)
 end
 
 def valid_move?(board, index)
-  if index.between?(0,8) && position_taken?(board, index) == false
-  true
-else
-  false
-  end
+  index.between?(0,8) && !position_taken?(board, index)
 end
 
-def input_to_index(input)
+def input_to_index(input) #helper method to change user's input
   input.to_i - 1
 end
 
@@ -31,12 +27,12 @@ def move (board, index, current_player = "X")
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.to_i
-  index = input_to_index(input)
-  if valid_move?(board, index) == true
-    move(board, index, current_player = "X")
-    display_board(board)
-  else turn(board)
+  puts "Please enter 1-9:"              # ask for user input
+  input = gets.to_i                     # gets user input
+  index = input_to_index(input)         # calls method to change input to index
+  if valid_move?(board, index)          # if condition true then call the two methods
+    move(board, index, current_player="X")
+  else turn(board)                      #if condition is false then recursion
+    display_board
   end
 end
